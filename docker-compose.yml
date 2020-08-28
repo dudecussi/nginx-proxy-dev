@@ -1,0 +1,14 @@
+version: '2'
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    restart: always
+    ports:
+      - '80:80'
+    volumes:
+      - '/var/run/docker.sock:/tmp/docker.sock:ro'
+      - './nginx-timeout-config.conf:/etc/nginx/conf.d/extended_timeout.conf'
+networks:
+  default:
+    external:
+      name: nginx-proxy
